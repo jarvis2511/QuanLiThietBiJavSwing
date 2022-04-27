@@ -33,7 +33,6 @@ public class MuonDao {
                 muondvc.setManguoimuon32(rs.getString(3));         
                 muondvc.setTennguoimuon32(rs.getString(4));
                 muondvc.setNgaymuon32(rs.getString(5));
-                muondvc.setNgaytra32(rs.getString(6));
                 DSmuondevice.add(muondvc);
             }
         } catch (Exception e) {

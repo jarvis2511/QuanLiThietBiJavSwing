@@ -21,6 +21,7 @@ public class Start extends javax.swing.JFrame {
     thred t1;
     public Start() {
         initComponents();
+        setTitle("Quản lí thiết bị trường học");
         t1=new thred(progress);
         t1.start();
     }

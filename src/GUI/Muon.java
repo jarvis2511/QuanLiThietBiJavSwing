@@ -4,6 +4,8 @@
  */
 package GUI;
 
+import Utils.Connect;
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
@@ -13,12 +15,16 @@ import javax.swing.JOptionPane;
  * @author QuanLDM
  */
 public class Muon extends javax.swing.JFrame {
-    
-    private String dataConstructor;
-    public Muon(String dataConstructor){
+    private String dataconstructor;
+     private String dataconstructor1;
+    public Muon(String data, String data1){
+        setTitle("Quản lí thiết bị trường học");
         initComponents();
-        this.dataConstructor = dataConstructor;
-        this.jtf_madvc32.setText(dataConstructor);
+        this.dataconstructor=data;
+        this.dataconstructor1= data1;
+        System.out.println(data1);
+        jtf_madvc32.setText(data1);
+        jtf_madvc32.setEditable(false);
         
     }
 
@@ -38,7 +44,6 @@ public class Muon extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -50,10 +55,10 @@ public class Muon extends javax.swing.JFrame {
         btn_save32 = new javax.swing.JButton();
         jtf_madvc32 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setText("Mượn thiết bị");
 
         jLabel2.setText("Ma muon");
 
@@ -69,6 +74,12 @@ public class Muon extends javax.swing.JFrame {
             }
         });
 
+        jtf_ngay32.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtf_ngay32ActionPerformed(evt);
+            }
+        });
+
         btn_save32.setText("Save");
         btn_save32.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,7 +87,25 @@ public class Muon extends javax.swing.JFrame {
             }
         });
 
+        jtf_madvc32.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtf_madvc32ActionPerformed(evt);
+            }
+        });
+
         jLabel3.setText("Ma thiet bi");
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/previous.png"))); // NOI18N
+        jLabel7.setText("Back");
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Sitka Display", 1, 36)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 102, 102));
+        jLabel8.setText("Mượn thiết bị");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -85,58 +114,61 @@ public class Muon extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(158, 158, 158)
-                        .addComponent(jLabel1))
+                        .addContainerGap()
+                        .addComponent(jLabel7))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
+                        .addGap(68, 68, 68)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel5)
                                     .addComponent(jLabel6))
-                                .addGap(24, 24, 24)
+                                .addGap(29, 29, 29)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jtf_tennguoi32)
-                                    .addComponent(jtf_manguoi32, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                                    .addComponent(jtf_ngay32)))
+                                    .addComponent(jtf_tennguoi32, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jtf_manguoi32, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                                    .addComponent(jtf_ngay32, javax.swing.GroupLayout.Alignment.TRAILING)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel3))
                                 .addGap(60, 60, 60)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(btn_save32)
-                                    .addComponent(jtf_mamuon32, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jtf_madvc32, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(72, Short.MAX_VALUE))
+                                    .addComponent(jtf_mamuon32, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                                    .addComponent(jtf_madvc32)))
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))))
+                .addContainerGap(136, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(33, 33, 33)
+                .addComponent(jLabel7)
+                .addGap(13, 13, 13)
+                .addComponent(jLabel8)
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jtf_mamuon32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtf_madvc32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jtf_manguoi32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jtf_tennguoi32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtf_ngay32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addGap(32, 32, 32)
+                .addGap(35, 35, 35)
                 .addComponent(btn_save32)
                 .addGap(39, 39, 39))
         );
@@ -150,26 +182,42 @@ public class Muon extends javax.swing.JFrame {
 
     private void btn_save32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_save32ActionPerformed
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/da_quanlythietbi", "root", "Unitech@1");
+           Connection con = Connect.getConnection();
             String sql = "insert into muon values(?,?,?,?,?,?)";
+            String sql1="update thietbi set trangthai=1 where ma='"+dataconstructor1+"'";
             PreparedStatement pstmt = con.prepareStatement(sql);
+            PreparedStatement pstmt1 = con.prepareStatement(sql1);
             pstmt.setString(1, jtf_mamuon32.getText());
-            pstmt.setString(2, jtf_madvc32.getText());
+            pstmt.setString(2, dataconstructor1);
             pstmt.setString(3, jtf_manguoi32.getText());
             pstmt.setString(4, jtf_tennguoi32.getText());
             pstmt.setString(5, jtf_ngay32.getText());
-             pstmt.setString(6, null);
+            pstmt.setString(6, null);
             pstmt.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Successful");
+            JOptionPane.showMessageDialog(null, "Đăng ký mượn thành công");
+           pstmt1.executeUpdate();
             con.close();
-            QuanLi_Device s=new QuanLi_Device(dataConstructor);
+            QuanLi_Device s=new QuanLi_Device(dataconstructor);
                 s.setVisible(true);
                 dispose();
         } catch (Exception e) {
              JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_btn_save32ActionPerformed
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        QuanLi_Device s= new QuanLi_Device(dataconstructor);
+        s.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void jtf_madvc32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_madvc32ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtf_madvc32ActionPerformed
+
+    private void jtf_ngay32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_ngay32ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtf_ngay32ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -208,12 +256,13 @@ public class Muon extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_save32;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField jtf_madvc32;
     private javax.swing.JTextField jtf_mamuon32;
     private javax.swing.JTextField jtf_manguoi32;

@@ -8,6 +8,10 @@ import DAO.DeviceDao;
 
 import POJO.Device;
 import Utils.Connect;
+import java.io.BufferedOutputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import javax.swing.RowFilter;
 import java.io.InputStream;
 import java.io.Reader;
@@ -32,46 +36,64 @@ import java.sql.SQLWarning;
 import java.sql.SQLXML;
 import java.sql.Statement;
 
-
 import java.util.ArrayList;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+import javax.swing.text.html.parser.DTDConstants;
+
 
 /**
  *
  * @author QuanLDM
  */
 public class QuanLi_Device extends javax.swing.JFrame {
-    private String dataConstructor;
+
+    private String dataconstructor = "";
+    private String dataconstructor1 = "";
+    private String dataconstructor2 = "";
+    
+    
+
     /**
      * Creates new form QuanLi_Device
      */
-    public QuanLi_Device(String dataConstructor) {
+    public QuanLi_Device(String data) {
         initComponents();
+        setTitle("Quản lí thiết bị trường học");
+        this.dataconstructor = data;
+        
 
+        btn_muon32.setEnabled(false);
+        btn_edit_32.setEnabled(false);
+        btn_delete_32.setEnabled(false);
+        btn_hong_32.setEnabled(false);
+        jtf_ma32.setEditable(false);
         ArrayList<Device> dv = DeviceDao.layDSdevice("select * from thietbi ");
-        System.out.println(dv);
         DefaultTableModel model = (DefaultTableModel) jtb_ds.getModel();
 
         Object[] obj = new Object[5];
         for (int i = 0; i < dv.size(); i++) {
             obj[0] = dv.get(i).getMa32();
             obj[1] = dv.get(i).getTen32();
-            obj[2] = dv.get(i).getLoai32(); 
+            obj[2] = dv.get(i).getLoai32();
             obj[3] = dv.get(i).getTinhtrang32();
-            obj[4] = dv.get(i).getTrangthai32();
+            if (dv.get(i).getTrangthai32().equals("0")) {
+                obj[4] = "Chưa mượn";
+            } else {
+                obj[4] = "Đang mượn";
+            }
+//            obj[4] = dv.get(i).getTrangthai32();
             model.addRow(obj);
-            
-            
+
         }
     }
-    private void FindByName(){
-       
-    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -81,8 +103,6 @@ public class QuanLi_Device extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jtb_ds = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -92,79 +112,100 @@ public class QuanLi_Device extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jtf_ma32 = new javax.swing.JTextField();
         jtf_ten32 = new javax.swing.JTextField();
-        jtf_loai32 = new javax.swing.JTextField();
         jtf_tinhtrang32 = new javax.swing.JTextField();
         jtf_trangthai32 = new javax.swing.JTextField();
         btn_them_32 = new javax.swing.JButton();
         btn_edit_32 = new javax.swing.JButton();
         btn_delete_32 = new javax.swing.JButton();
         btn_hong_32 = new javax.swing.JButton();
+        btn_muon32 = new javax.swing.JButton();
+        jtf_loai32 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jtf_search = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtb_ds = new javax.swing.JTable();
+        jtf_search = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jtb_ds.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 102, 102));
+        jLabel2.setText("Danh sách thiết bị");
 
-            },
-            new String [] {
-                "MA THIET BI", "TEN THIET BI", "LOAI", "TINH TRANG", "TRANG THAI"
-            }
-        ));
-        jtb_ds.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jtb_dsMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(jtb_ds);
+        jPanel3.setForeground(new java.awt.Color(0, 51, 51));
 
-        jLabel2.setText("Danh sach thiet bi");
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel3.setText("Mã");
 
-        jLabel3.setText("Ma");
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel4.setText("Tên");
 
-        jLabel4.setText("Ten");
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel5.setText("Loại");
 
-        jLabel5.setText("Loai");
+        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel6.setText("Tình trạng");
 
-        jLabel6.setText("Tinh trang");
+        jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel7.setText("Trạng thái");
 
-        jLabel7.setText("Trang thai");
-
+        jtf_ma32.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jtf_ma32.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtf_ma32ActionPerformed(evt);
             }
         });
 
+        jtf_ten32.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+
+        jtf_tinhtrang32.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jtf_tinhtrang32.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtf_tinhtrang32ActionPerformed(evt);
             }
         });
 
-        btn_them_32.setText("Them");
+        jtf_trangthai32.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+
+        btn_them_32.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        btn_them_32.setForeground(new java.awt.Color(0, 51, 51));
+        btn_them_32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/plus.png"))); // NOI18N
+        btn_them_32.setText("Thêm");
         btn_them_32.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_them_32ActionPerformed(evt);
             }
         });
 
-        btn_edit_32.setText("Sua");
+        btn_edit_32.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        btn_edit_32.setForeground(new java.awt.Color(0, 51, 51));
+        btn_edit_32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/edit.png"))); // NOI18N
+        btn_edit_32.setText("Sửa");
         btn_edit_32.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_edit_32ActionPerformed(evt);
             }
         });
 
-        btn_delete_32.setText("Xoa");
+        btn_delete_32.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        btn_delete_32.setForeground(new java.awt.Color(0, 51, 51));
+        btn_delete_32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/delete.png"))); // NOI18N
+        btn_delete_32.setText("Xóa");
         btn_delete_32.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_delete_32ActionPerformed(evt);
             }
         });
 
+        btn_hong_32.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        btn_hong_32.setForeground(new java.awt.Color(0, 51, 51));
+        btn_hong_32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/report.png"))); // NOI18N
         btn_hong_32.setText("Báo hỏng");
         btn_hong_32.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,16 +213,25 @@ public class QuanLi_Device extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Mượn");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_muon32.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        btn_muon32.setForeground(new java.awt.Color(0, 51, 51));
+        btn_muon32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/inspiration.png"))); // NOI18N
+        btn_muon32.setText("Mượn");
+        btn_muon32.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_muon32ActionPerformed(evt);
             }
         });
 
-        jtf_search.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jtf_searchKeyReleased(evt);
+        jtf_loai32.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+
+        jButton1.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(0, 51, 51));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/parchment.png"))); // NOI18N
+        jButton1.setText("Lịch sử ");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -190,75 +240,68 @@ public class QuanLi_Device extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel6)
-                                .addComponent(jLabel7))
-                            .addGap(29, 29, 29)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jtf_loai32, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
-                                .addComponent(jtf_tinhtrang32)
-                                .addComponent(jtf_trangthai32)))
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addComponent(jLabel4)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-                            .addComponent(jtf_ten32, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(97, 97, 97)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(24, 24, 24)
+                        .addComponent(jtf_trangthai32))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(24, 24, 24)
+                        .addComponent(jtf_tinhtrang32, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jtf_search)
-                                .addComponent(jtf_ma32, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE))))
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_them_32)
-                    .addComponent(btn_edit_32)
-                    .addComponent(btn_hong_32)
-                    .addComponent(jButton1)
-                    .addComponent(btn_delete_32))
-                .addGap(49, 49, 49))
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
+                        .addGap(62, 62, 62)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jtf_ten32, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jtf_ma32, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jtf_loai32, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(88, 88, 88)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btn_them_32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_edit_32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_delete_32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_hong_32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_muon32, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)))
+                .addContainerGap(96, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jtf_search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jtf_ma32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_them_32))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap(79, Short.MAX_VALUE)
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jtf_ten32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btn_edit_32)))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jtf_loai32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5)
-                            .addComponent(btn_delete_32))
-                        .addGap(18, 18, 18)))
+                .addGap(17, 17, 17)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jtf_ma32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_them_32))
+                .addGap(26, 26, 26)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jtf_ten32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_edit_32))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(btn_delete_32)
+                    .addComponent(jtf_loai32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jtf_tinhtrang32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_hong_32))
-                .addGap(24, 24, 24)
+                .addGap(20, 20, 20)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jtf_trangthai32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addContainerGap())
+                    .addComponent(btn_muon32))
+                .addGap(20, 20, 20)
+                .addComponent(jButton1)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/previous.png"))); // NOI18N
@@ -269,36 +312,96 @@ public class QuanLi_Device extends javax.swing.JFrame {
             }
         });
 
+        jtb_ds.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jtb_ds.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jtb_ds.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "MÃ THIẾT BỊ", "TÊN THIẾT BỊ", "LOẠI", "TÌNH TRẠNG", "TRẠNG THÁI"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jtb_ds.setGridColor(new java.awt.Color(0, 153, 0));
+        jtb_ds.setRowHeight(30);
+        jtb_ds.setSelectionBackground(new java.awt.Color(204, 204, 255));
+        jtb_ds.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtb_dsMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jtb_ds);
+        if (jtb_ds.getColumnModel().getColumnCount() > 0) {
+            jtb_ds.getColumnModel().getColumn(3).setMinWidth(10);
+        }
+
+        jtf_search.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jtf_search.setForeground(new java.awt.Color(204, 204, 204));
+        jtf_search.setText("Search");
+        jtf_search.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtf_searchMouseClicked(evt);
+            }
+        });
+        jtf_search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtf_searchActionPerformed(evt);
+            }
+        });
+        jtf_search.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtf_searchKeyReleased(evt);
+            }
+        });
+
+        jSeparator1.setBackground(new java.awt.Color(51, 255, 0));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 547, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(250, 250, 250)
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(153, 153, 153)
                 .addComponent(jLabel2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addGap(13, 13, 13)))
+                        .addComponent(jtf_search, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel2)
-                .addGap(10, 10, 10)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18))
+                .addGap(10, 10, 10)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jtf_search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -313,14 +416,34 @@ public class QuanLi_Device extends javax.swing.JFrame {
         jtf_loai32.setText(tmodel.getValueAt(selectrowindex, 2).toString());
         jtf_tinhtrang32.setText(tmodel.getValueAt(selectrowindex, 3).toString());
         jtf_trangthai32.setText(tmodel.getValueAt(selectrowindex, 4).toString());
+        dataconstructor1 = jtf_ma32.getText();
         boolean a = jtb_ds.isEditing();
-        if (a == false) {
-            JOptionPane.showMessageDialog(null, "You can not edit in this table");
+        if (jtf_ma32.getText() != null) {
+            btn_edit_32.setEnabled(true);
+            btn_delete_32.setEnabled(true);
         }
+        if (jtf_tinhtrang32.getText().equals("Normal")) {
+            btn_hong_32.setEnabled(true);
+            btn_muon32.setEnabled(true);
+        } else {
+            btn_hong_32.setEnabled(false);
+
+        }
+
+        if (jtf_trangthai32.getText().equals("Chưa mượn") && jtf_tinhtrang32.getText().equals("Normal")) {
+            btn_muon32.setEnabled(true);
+        } else {
+            btn_muon32.setEnabled(false);
+        }
+        if (a == false) {
+            JOptionPane.showMessageDialog(null, "Bạn không thể chỉnh sửa ở đây ");
+        }
+        dataconstructor2 = jtf_ma32.getText();
+        System.out.println(dataconstructor2);
     }//GEN-LAST:event_jtb_dsMouseClicked
 
     private void btn_them_32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_them_32ActionPerformed
-        Add li = new Add();
+        Add li = new Add(dataconstructor);
         li.setVisible(true);
         dispose();
     }//GEN-LAST:event_btn_them_32ActionPerformed
@@ -329,16 +452,15 @@ public class QuanLi_Device extends javax.swing.JFrame {
         // TODO add your handling code here:
         String sql = "delete from thietbi where ma =?";
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/da_quanlythietbi", "root", "Unitech@1");
+            Connection con = Connect.getConnection();
             PreparedStatement pstmt = con.prepareStatement(sql);
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, jtf_ma32.getText());
             pstmt.execute();
-            JOptionPane.showMessageDialog(null, "Delete");
+            JOptionPane.showMessageDialog(null, "Xóa thành công");
         } catch (Exception e) {
         }
-        QuanLi_Device s = new QuanLi_Device(dataConstructor);
+        QuanLi_Device s = new QuanLi_Device(dataconstructor);
         s.setVisible(true);
         dispose();
     }//GEN-LAST:event_btn_delete_32ActionPerformed
@@ -352,25 +474,23 @@ public class QuanLi_Device extends javax.swing.JFrame {
     }//GEN-LAST:event_jtf_tinhtrang32ActionPerformed
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        MENU s = new MENU();
+        MENU s = new MENU(dataconstructor);
         s.setVisible(true);
         dispose();
     }//GEN-LAST:event_jLabel1MouseClicked
     private void btn_edit_32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_edit_32ActionPerformed
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/da_quanlythietbi", "root", "Unitech@1");
+            Connection con = Connect.getConnection();
             String value1 = jtf_ma32.getText();
             String value2 = jtf_ten32.getText();
             String value3 = jtf_loai32.getText();
-            String sql = "UPDATE thietbi set ma='" + value1 + "' ,ten='" + value2 + "' ,loai='" + value3 + "'";
+            String sql = "UPDATE thietbi set ten='" + value2 + "' ,loai='" + value3 + "' where ma='" + value1 + "' ";
             PreparedStatement pstmt = con.prepareStatement(sql);
             pstmt = con.prepareStatement(sql);
-            pstmt.setString(1, jtf_ma32.getText());
             pstmt.execute();
-            JOptionPane.showMessageDialog(this, "Successful");
+            JOptionPane.showMessageDialog(this, "Chỉnh sửa thành công ");
             con.close();
-            QuanLi_Device s = new QuanLi_Device(dataConstructor);
+            QuanLi_Device s = new QuanLi_Device(dataconstructor);
             s.setVisible(true);
             dispose();
         } catch (Exception e) {
@@ -380,38 +500,53 @@ public class QuanLi_Device extends javax.swing.JFrame {
 
     private void btn_hong_32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hong_32ActionPerformed
         // TODO add your handling code here:
+
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/da_quanlythietbi", "root", "Unitech@1");
+            Connection con = Connect.getConnection();
             String value1 = "Error";
             String value2 = jtf_ma32.getText();
             String sql = "UPDATE thietbi set tinhtrang='" + value1 + "' where ma='" + value2 + "'";
             PreparedStatement pstmt = con.prepareStatement(sql);
             pstmt = con.prepareStatement(sql);
             pstmt.execute();
-            JOptionPane.showMessageDialog(this, "Successful");
+            JOptionPane.showMessageDialog(this, "Báo hỏng thành công");
             con.close();
-            QuanLi_Device s = new QuanLi_Device(dataConstructor);
+            QuanLi_Device s = new QuanLi_Device(dataconstructor);
             s.setVisible(true);
             dispose();
         } catch (Exception e) {
         }
+
     }//GEN-LAST:event_btn_hong_32ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-            Muon dv = new Muon(jtf_ma32.getText());
-            
-            dv.setVisible(true);
-            dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btn_muon32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_muon32ActionPerformed
+        Muon dv = new Muon(dataconstructor, dataconstructor1);
+        dv.setVisible(true);
+        dispose();
+
+    }//GEN-LAST:event_btn_muon32ActionPerformed
 
     private void jtf_searchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_searchKeyReleased
         // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel)jtb_ds.getModel();
+        DefaultTableModel model = (DefaultTableModel) jtb_ds.getModel();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(model);
         jtb_ds.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(jtf_search.getText().trim()));
     }//GEN-LAST:event_jtf_searchKeyReleased
+
+    private void jtf_searchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtf_searchMouseClicked
+         jtf_search.setText("");
+    }//GEN-LAST:event_jtf_searchMouseClicked
+
+    private void jtf_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_searchActionPerformed
+     
+    }//GEN-LAST:event_jtf_searchActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        LichSuFindMa_Device s = new LichSuFindMa_Device(dataconstructor,dataconstructor2);
+        s.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -443,7 +578,7 @@ public class QuanLi_Device extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                
+
             }
         });
     }
@@ -452,6 +587,7 @@ public class QuanLi_Device extends javax.swing.JFrame {
     private javax.swing.JButton btn_delete_32;
     private javax.swing.JButton btn_edit_32;
     private javax.swing.JButton btn_hong_32;
+    private javax.swing.JButton btn_muon32;
     private javax.swing.JButton btn_them_32;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -463,6 +599,7 @@ public class QuanLi_Device extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jtb_ds;
     private javax.swing.JTextField jtf_loai32;
     private javax.swing.JTextField jtf_ma32;

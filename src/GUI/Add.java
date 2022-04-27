@@ -16,14 +16,29 @@ import javax.swing.JOptionPane;
  * @author QuanLDM
  */
 public class Add extends javax.swing.JFrame {
-    private String dataConstructor;
+    private static String dataconstructor;
+     ResultSet rs = null;
+ 
     /**
      * Creates new form Add
      */
-    public Add() {
+    public Add(String data) {
         initComponents();
-        
+        setTitle("Quản lí thiết bị trường học");
+        this.dataconstructor=data;
+         try {
+            Connection con = Connect.getConnection();
+            String sql= "SELECT * FROM loaithietbi  ";
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            while(rs.next()){
+                cb.addItem(rs.getString("tenloaidvc"));
+            }    
+        } catch (Exception e) {
+            
+        }
     }
+ 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -37,12 +52,12 @@ public class Add extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        ma = new javax.swing.JTextField();
-        ten = new javax.swing.JTextField();
-        cb_loai = new javax.swing.JComboBox<>();
+        ma32 = new javax.swing.JTextField();
+        ten32 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        cb = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,21 +67,12 @@ public class Add extends javax.swing.JFrame {
 
         jLabel5.setText("Loai");
 
-        cb_loai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cong nghe thong tin", "Co khi", "CNTT", " " }));
-        cb_loai.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cb_loaiMouseClicked(evt);
-            }
-        });
-
         jButton1.setText("Save");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-
-        jLabel6.setText("Them thiet bi");
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/previous.png"))); // NOI18N
         jLabel7.setText("Back");
@@ -76,54 +82,59 @@ public class Add extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Sitka Display", 1, 36)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 102, 102));
+        jLabel3.setText("Thêm thiết bị");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(54, 54, 54)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel5))
-                .addGap(41, 41, 41)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(cb_loai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(ma, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
-                        .addComponent(ten))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(jLabel6)))
-                .addContainerGap(74, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel7)
-                .addGap(17, 17, 17))
+                        .addContainerGap()
+                        .addComponent(jLabel7))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(89, 89, 89)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel5))
+                        .addGap(41, 41, 41)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(ma32)
+                                .addComponent(ten32)
+                                .addComponent(cb, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(125, 125, 125)
+                        .addComponent(jLabel3)))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
+                .addComponent(jLabel7)
+                .addGap(10, 10, 10)
+                .addComponent(jLabel3)
+                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(ma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
+                    .addComponent(ma32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(ten, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(ten32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(cb_loai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                    .addComponent(cb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addGap(152, 152, 152)
-                .addComponent(jLabel7)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addGap(39, 39, 39))
         );
 
         pack();
@@ -131,53 +142,41 @@ public class Add extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        StringBuilder sb= new StringBuilder();
+        if (ma32.getText().equals("")||ten32.getText().equals("")){
+            sb.append("Please enter all the data");
+            JOptionPane.showMessageDialog(this,sb);
+        }
+        else{
         try {
 
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/da_quanlythietbi", "root", "Unitech@1");
+            Connection con = Connect.getConnection();
             String sql = "insert into thietbi values(?,?,?,?,?)";
             PreparedStatement pstmt = con.prepareStatement(sql);
-            pstmt.setString(1, ma.getText());
-            pstmt.setString(2, ten.getText());
+            pstmt.setString(1, ma32.getText());
+            pstmt.setString(2, ten32.getText());
             String lo;
-            lo = cb_loai.getSelectedItem().toString();
+            lo = cb.getSelectedItem().toString();
             pstmt.setString(3, lo);
             pstmt.setString(4, "Normal");
-            pstmt.setString(5, "Chua muon");
+            pstmt.setString(5, "0");
             pstmt.executeUpdate();
             JOptionPane.showMessageDialog(null, "Successful");
             con.close();
-            QuanLi_Device s=new QuanLi_Device(dataConstructor);
+            QuanLi_Device s=new QuanLi_Device(dataconstructor);
                 s.setVisible(true);
                 dispose();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
-        QuanLi_Device s=new QuanLi_Device(dataConstructor);
+        QuanLi_Device s=new QuanLi_Device(dataconstructor);
                 s.setVisible(true);
                 dispose();
     }//GEN-LAST:event_jLabel7MouseClicked
-
-    private void cb_loaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cb_loaiMouseClicked
-//        ResultSet rs;
-//        try{
-//            Class.forName("com.mysql.cj.jdbc.Driver");
-//            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/da_quanlythietbi", "root", "Unitech@1");
-//            String sql = "SELECT Maloaidvc FROM loaithietbi";
-//            PreparedStatement pstmt = con.prepareStatement(sql);
-//           rs= pstmt.executeQuery();
-//   while(rs.next())
-//   {
-//       cb_loai.addItem(rs.getString(1));
-//   }
-//
-//}   
-//catch(Exception e){
-//    JOptionPane.showMessageDialog(null,"ERROR_CLOSE");
-    }//GEN-LAST:event_cb_loaiMouseClicked
 
     /**
      * @param args the command line arguments
@@ -209,20 +208,23 @@ public class Add extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Add().setVisible(true);
+                Add s = new Add(dataconstructor);
+                s.setVisible(true);
+                
+               
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> cb_loai;
+    private javax.swing.JComboBox<String> cb;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField ma;
-    private javax.swing.JTextField ten;
+    private javax.swing.JTextField ma32;
+    private javax.swing.JTextField ten32;
     // End of variables declaration//GEN-END:variables
 }

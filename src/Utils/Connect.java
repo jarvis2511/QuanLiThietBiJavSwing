@@ -20,7 +20,7 @@ public class Connect {
 
     public static java.sql.Connection getConnection() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/da_quanlythietbi", "root", "Unitech@1");
+        java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/da_quanlythietbi", "root", "Quan123");
         return con;
     }
 

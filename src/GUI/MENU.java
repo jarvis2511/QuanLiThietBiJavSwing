@@ -51,11 +51,11 @@ public class MENU extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Sitka Subheading", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(153, 0, 153));
-        jLabel2.setText("Danh sách thiết bị");
+        jLabel2.setText(" List of devices");
 
         jLabel3.setFont(new java.awt.Font("Sitka Subheading", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(153, 0, 153));
-        jLabel3.setText("Danh sách mượn");
+        jLabel3.setText(" Borrowing list");
 
         List32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/device.png"))); // NOI18N
         List32.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -94,7 +94,7 @@ public class MENU extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Sitka Subheading", 0, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(153, 0, 153));
-        jLabel6.setText("Lịch sử mượn");
+        jLabel6.setText(" Borrowing history");
 
         History32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/museum.png"))); // NOI18N
         History32.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -120,24 +120,23 @@ public class MENU extends javax.swing.JFrame {
                         .addGap(59, 59, 59)
                         .addComponent(List32))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
+                        .addGap(44, 44, 44)
                         .addComponent(jLabel2)))
-                .addGap(11, 11, 11)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(90, 90, 90)
+                        .addGap(110, 110, 110)
                         .addComponent(ListMuon32))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(72, 72, 72)
+                        .addGap(99, 99, 99)
                         .addComponent(jLabel3)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(History32)
-                        .addGap(78, 78, 78))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6)
-                        .addGap(68, 68, 68))))
+                        .addGap(38, 38, 38))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(History32)
+                        .addGap(59, 59, 59))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,8 +165,8 @@ public class MENU extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

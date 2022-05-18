@@ -82,7 +82,6 @@ public class LichSu_Device extends javax.swing.JFrame {
         jtf_ngaytra32 = new javax.swing.JTextField();
         jtf_masp32 = new javax.swing.JTextField();
         jtf_manguoi32 = new javax.swing.JTextField();
-        btn_Edit = new javax.swing.JButton();
         jtf_Search32 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtb_muon = new javax.swing.JTable();
@@ -91,7 +90,7 @@ public class LichSu_Device extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Sitka Display", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel1.setText("Lịch sử mượn ");
+        jLabel1.setText(" Borrowing history");
 
         jSeparator1.setBackground(new java.awt.Color(0, 102, 51));
 
@@ -159,16 +158,6 @@ public class LichSu_Device extends javax.swing.JFrame {
         jtf_masp32.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
 
         jtf_manguoi32.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-
-        btn_Edit.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        btn_Edit.setForeground(new java.awt.Color(0, 51, 51));
-        btn_Edit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/update.png"))); // NOI18N
-        btn_Edit.setText("Cập nhật");
-        btn_Edit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_EditActionPerformed(evt);
-            }
-        });
 
         jtf_Search32.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jtf_Search32.setForeground(new java.awt.Color(204, 204, 204));
@@ -244,14 +233,9 @@ public class LichSu_Device extends javax.swing.JFrame {
                 .addComponent(jScrollPane1)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(254, 254, 254)
-                        .addComponent(jLabel1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addContainerGap(815, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -259,17 +243,17 @@ public class LichSu_Device extends javax.swing.JFrame {
                         .addComponent(jtf_Search32, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btn_Edit)
-                        .addGap(360, 360, 360))))
+                        .addComponent(jLabel1)
+                        .addGap(254, 254, 254))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addGap(10, 10, 10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
-                .addGap(10, 10, 10)
+                .addGap(14, 14, 14)
                 .addComponent(jtf_Search32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -287,15 +271,13 @@ public class LichSu_Device extends javax.swing.JFrame {
                     .addComponent(jtf_masp32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
                     .addComponent(jtf_ngaymuon32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtf_ngaytra32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
                     .addComponent(jtf_manguoi32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addGap(18, 18, 18)
-                .addComponent(btn_Edit)
-                .addGap(13, 13, 13))
+                .addGap(54, 54, 54))
         );
 
         pack();
@@ -331,30 +313,6 @@ public class LichSu_Device extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Bạn không thể chỉnh sửa ở đây ");
         }
     }//GEN-LAST:event_jtb_muonMouseClicked
-
-    private void btn_EditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EditActionPerformed
-//      try {
-//            Connection con = Connect.getConnection();
-//            String value1 = jtf_mamuon32.getText();
-//            String value2 = jtf_ngaytra32.getText();
-//            String value3 = jtf_masp32.getText();
-//            String sql = "UPDATE muon set ngaytra='" +value2 + "' where mamuon='" + value1 + "' ";
-//            String sql1 = "UPDATE thietbi set trangthai=0 where ma='" + value3 + "' ";
-//            PreparedStatement pstmt = con.prepareStatement(sql);
-//             PreparedStatement pstmt1 = con.prepareStatement(sql1);
-//            pstmt = con.prepareStatement(sql);
-//            pstmt.execute();
-//              pstmt1.execute();
-//            JOptionPane.showMessageDialog(this, "Chỉnh sửa thành công ");
-//            
-//            con.close();
-//            LichSu_Device s = new LichSu_Device(dataconstructor);
-//            s.setVisible(true);
-//            dispose();
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, e);
-//        }
-    }//GEN-LAST:event_btn_EditActionPerformed
 
     private void jtf_ngaytra32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_ngaytra32ActionPerformed
         // TODO add your handling code here:
@@ -417,7 +375,6 @@ public class LichSu_Device extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_Edit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -60,13 +60,21 @@ public class Muon extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel2.setText("Ma muon");
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel2.setText("Mã mượn");
 
-        jLabel4.setText("Ma nguoi muon");
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel4.setText("Mã người mượn");
 
-        jLabel5.setText("Ten nguoi muon");
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel5.setText("Tên người mượn");
 
-        jLabel6.setText("Ngay muon");
+        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel6.setText("Ngày mượn");
 
         jtf_manguoi32.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -80,6 +88,9 @@ public class Muon extends javax.swing.JFrame {
             }
         });
 
+        btn_save32.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        btn_save32.setForeground(new java.awt.Color(0, 51, 51));
+        btn_save32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/save.png"))); // NOI18N
         btn_save32.setText("Save");
         btn_save32.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,7 +104,9 @@ public class Muon extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Ma thiet bi");
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel3.setText("Mã thiết bị");
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/previous.png"))); // NOI18N
         jLabel7.setText("Back");
@@ -105,7 +118,7 @@ public class Muon extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Sitka Display", 1, 36)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel8.setText("Mượn thiết bị");
+        jLabel8.setText("Borrow Device");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -135,11 +148,13 @@ public class Muon extends javax.swing.JFrame {
                                     .addComponent(jLabel3))
                                 .addGap(60, 60, 60)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btn_save32)
                                     .addComponent(jtf_mamuon32, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
-                                    .addComponent(jtf_madvc32)))
+                                    .addComponent(jtf_madvc32)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(31, 31, 31)
+                                        .addComponent(btn_save32))))
                             .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))))
-                .addContainerGap(136, Short.MAX_VALUE))
+                .addContainerGap(122, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,7 +171,7 @@ public class Muon extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtf_madvc32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jtf_manguoi32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -168,9 +183,9 @@ public class Muon extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtf_ngay32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addGap(35, 35, 35)
+                .addGap(36, 36, 36)
                 .addComponent(btn_save32)
-                .addGap(39, 39, 39))
+                .addGap(38, 38, 38))
         );
 
         pack();

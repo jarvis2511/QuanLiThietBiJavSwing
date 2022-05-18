@@ -44,7 +44,6 @@ public class LOGIN extends javax.swing.JFrame {
         jtf_user32 = new javax.swing.JTextField();
         jtf_password32 = new javax.swing.JPasswordField();
         btnLogin32 = new javax.swing.JButton();
-        btnSignup32 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jcb_miss32 = new javax.swing.JCheckBox();
         jLabel5 = new javax.swing.JLabel();
@@ -82,16 +81,6 @@ public class LOGIN extends javax.swing.JFrame {
         btnLogin32.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLogin32ActionPerformed(evt);
-            }
-        });
-
-        btnSignup32.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        btnSignup32.setForeground(new java.awt.Color(0, 51, 51));
-        btnSignup32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/add-friend.png"))); // NOI18N
-        btnSignup32.setText("Sign up");
-        btnSignup32.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSignup32ActionPerformed(evt);
             }
         });
 
@@ -140,7 +129,7 @@ public class LOGIN extends javax.swing.JFrame {
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabel11.setText("Bản quyền thuộc về ©MinhQuan");
+        jLabel11.setText("Bản quyền thuộc về ©QKT");
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 51, 204));
@@ -170,7 +159,7 @@ public class LOGIN extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jtf_password32, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jtf_user32, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(116, Short.MAX_VALUE))
+                        .addContainerGap(127, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jcb_miss32)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -179,10 +168,6 @@ public class LOGIN extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jSeparator1))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(183, 183, 183))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,13 +194,17 @@ public class LOGIN extends javax.swing.JFrame {
                             .addComponent(fb32)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel7))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(152, 152, 152)
+                        .addComponent(jLabel7)))
+                .addContainerGap(295, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(183, 183, 183))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(btnLogin32)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnSignup32)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(164, 164, 164))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,11 +223,9 @@ public class LOGIN extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jcb_miss32)
                     .addComponent(Fgpassword32))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnLogin32)
-                    .addComponent(btnSignup32))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnLogin32)
+                .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel8))
@@ -309,12 +296,6 @@ public class LOGIN extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnLogin32ActionPerformed
 
-    private void btnSignup32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignup32ActionPerformed
-        Signup s = new Signup();
-        s.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_btnSignup32ActionPerformed
-
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         Exit s= new Exit();
         s.setVisible(true);
@@ -383,7 +364,6 @@ public class LOGIN extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Fgpassword32;
     private javax.swing.JButton btnLogin32;
-    private javax.swing.JButton btnSignup32;
     private javax.swing.JLabel fb32;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

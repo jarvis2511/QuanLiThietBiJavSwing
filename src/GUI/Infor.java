@@ -108,7 +108,7 @@ public class Infor extends javax.swing.JFrame {
         jtf_name32.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/update.png"))); // NOI18N
-        jButton1.setText("Cập nhật");
+        jButton1.setText("Update");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -121,7 +121,7 @@ public class Infor extends javax.swing.JFrame {
         jtf_bd32.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/exchange.png"))); // NOI18N
-        jButton2.setText("Đổi mật khẩu");
+        jButton2.setText("Change Password");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -138,7 +138,7 @@ public class Infor extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Sitka Display", 1, 30)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel9.setText("Thông tin người dùng");
+        jLabel9.setText("INFORMATION");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -154,12 +154,9 @@ public class Infor extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(41, 41, 41)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel9)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButton1)
-                                        .addGap(57, 57, 57)
-                                        .addComponent(jButton2))))
+                                .addComponent(jButton1)
+                                .addGap(57, 57, 57)
+                                .addComponent(jButton2))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
@@ -175,8 +172,11 @@ public class Infor extends javax.swing.JFrame {
                                     .addComponent(jtf_gender32, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jtf_email32, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jtf_password32, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jtf_username32, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(92, Short.MAX_VALUE))
+                                    .addComponent(jtf_username32, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(80, 80, 80)
+                                .addComponent(jLabel9)))))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -10,6 +10,9 @@ import DAO.HistoryDao;
 import DAO.MuonDao;
 import POJO.MuonDevice;
 import Utils.Connect;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -18,6 +21,20 @@ import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 
 
@@ -42,7 +59,7 @@ public class HistoryByMa extends javax.swing.JFrame {
         initComponents();
        
         ArrayList<MuonDevice> dv = HistoryDao.layDSMuondevice("select * from muon where ma='"+data2+"' ");
-        DefaultTableModel model = (DefaultTableModel) jtb_muon.getModel();
+        DefaultTableModel model = (DefaultTableModel) jtb_muon32.getModel();
         Object[] obj = new Object[6];
         for (int i = 0; i < dv.size(); i++) {
             obj[0] = dv.get(i).getMamuon32();
@@ -57,6 +74,14 @@ public class HistoryByMa extends javax.swing.JFrame {
         jtf_Search32.setEditable(false);
             
     }
+      public void openFile(String file){
+        try{
+            File path = new File(file);
+            Desktop.getDesktop().open(path);
+        }catch(IOException ioe){
+            System.out.println(ioe);
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -67,29 +92,22 @@ public class HistoryByMa extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        kGradientPanel1 = new keeptoo.KGradientPanel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jtf_Search32 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtb_muon = new javax.swing.JTable();
+        jtb_muon32 = new javax.swing.JTable();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Sitka Display", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel1.setText("Lịch sử mượn ");
+        kGradientPanel1.setkEndColor(new java.awt.Color(0, 102, 102));
+        kGradientPanel1.setkStartColor(new java.awt.Color(153, 153, 255));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 838, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 16, Short.MAX_VALUE)
-        );
+        jLabel1.setFont(new java.awt.Font("Sitka Display", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 51));
+        jLabel1.setText(" Borrowing list");
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/previous.png"))); // NOI18N
         jLabel2.setText("Back");
@@ -111,7 +129,7 @@ public class HistoryByMa extends javax.swing.JFrame {
             }
         });
 
-        jtb_muon.setModel(new javax.swing.table.DefaultTableModel(
+        jtb_muon32.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -127,56 +145,76 @@ public class HistoryByMa extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jtb_muon.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-        jtb_muon.setGridColor(new java.awt.Color(0, 153, 0));
-        jtb_muon.setRowHeight(30);
-        jtb_muon.setSelectionBackground(new java.awt.Color(204, 204, 255));
-        jtb_muon.addMouseListener(new java.awt.event.MouseAdapter() {
+        jtb_muon32.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        jtb_muon32.setGridColor(new java.awt.Color(0, 153, 0));
+        jtb_muon32.setRowHeight(30);
+        jtb_muon32.setSelectionBackground(new java.awt.Color(204, 204, 255));
+        jtb_muon32.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jtb_muonMouseClicked(evt);
+                jtb_muon32MouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jtb_muon);
+        jScrollPane1.setViewportView(jtb_muon32);
+
+        jButton3.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(0, 51, 51));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/export.png"))); // NOI18N
+        jButton3.setText("Export Excel");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
+        kGradientPanel1.setLayout(kGradientPanel1Layout);
+        kGradientPanel1Layout.setHorizontalGroup(
+            kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jtf_Search32, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(169, 169, 169))
+            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2))
+                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                        .addGap(519, 519, 519)
+                        .addComponent(jButton3))
+                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                        .addGap(68, 68, 68)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1029, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                        .addGap(448, 448, 448)
+                        .addComponent(jLabel1)))
+                .addContainerGap(71, Short.MAX_VALUE))
+        );
+        kGradientPanel1Layout.setVerticalGroup(
+            kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addGap(19, 19, 19)
+                .addComponent(jLabel1)
+                .addGap(24, 24, 24)
+                .addComponent(jtf_Search32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(73, 73, 73)
+                .addComponent(jButton3)
+                .addContainerGap(78, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(28, 28, 28))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(254, 254, 254)
-                        .addComponent(jLabel1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(725, Short.MAX_VALUE)
-                .addComponent(jtf_Search32, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(kGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addGap(10, 10, 10)
-                .addComponent(jLabel1)
-                .addGap(10, 10, 10)
-                .addComponent(jtf_Search32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(kGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -192,23 +230,64 @@ public class HistoryByMa extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jtf_Search32KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_Search32KeyReleased
-   DefaultTableModel model = (DefaultTableModel)jtb_muon.getModel();
+   DefaultTableModel model = (DefaultTableModel)jtb_muon32.getModel();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(model);
-        jtb_muon.setRowSorter(tr);
+        jtb_muon32.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(jtf_Search32.getText().trim()));
     }//GEN-LAST:event_jtf_Search32KeyReleased
 
-    private void jtb_muonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtb_muonMouseClicked
-       boolean a = jtb_muon.isEditing();
+    private void jtb_muon32MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtb_muon32MouseClicked
+       boolean a = jtb_muon32.isEditing();
         if (a == false) {
             JOptionPane.showMessageDialog(null, "Bạn không thể chỉnh sửa ở đây ");
         }
        
-    }//GEN-LAST:event_jtb_muonMouseClicked
+    }//GEN-LAST:event_jtb_muon32MouseClicked
 
     private void jtf_Search32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_Search32ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtf_Search32ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+       try{
+            JFileChooser jFileChooser = new JFileChooser();
+            jFileChooser.showSaveDialog(this);
+            File saveFile = jFileChooser.getSelectedFile();
+
+            if(saveFile != null){
+                saveFile = new File(saveFile.toString()+".xlsx");
+                Workbook wb = new XSSFWorkbook();
+                Sheet sheet = wb.createSheet("customer");
+
+                Row rowCol = sheet.createRow(0);
+                for(int i=0;i<jtb_muon32.getColumnCount();i++){
+                    Cell cell = rowCol.createCell(i);
+                    cell.setCellValue(jtb_muon32.getColumnName(i));
+                }
+
+                for(int j=0;j<jtb_muon32.getRowCount();j++){
+                    Row row = sheet.createRow(j+1);
+                    for(int k=0;k<jtb_muon32.getColumnCount();k++){
+                        Cell cell = row.createCell(k);
+                        if(jtb_muon32.getValueAt(j, k)!=null){
+                            cell.setCellValue(jtb_muon32.getValueAt(j, k).toString());
+                        }
+                    }
+                }
+                FileOutputStream out = new FileOutputStream(new File(saveFile.toString()));
+                wb.write(out);
+                wb.close();
+                out.close();
+                openFile(saveFile.toString());
+            }else{
+                JOptionPane.showMessageDialog(null,"Error Export File");
+            }
+        }catch(FileNotFoundException e){
+            System.out.println(e);
+        }catch(IOException io){
+            System.out.println(io);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -375,11 +454,12 @@ public class HistoryByMa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jtb_muon;
+    private javax.swing.JTable jtb_muon32;
     private javax.swing.JTextField jtf_Search32;
+    private keeptoo.KGradientPanel kGradientPanel1;
     // End of variables declaration//GEN-END:variables
 }

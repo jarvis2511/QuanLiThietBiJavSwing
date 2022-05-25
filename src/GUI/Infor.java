@@ -75,6 +75,7 @@ public class Infor extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel1.setText("Username");
@@ -107,6 +108,8 @@ public class Infor extends javax.swing.JFrame {
 
         jtf_name32.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
 
+        jButton1.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(0, 51, 51));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/update.png"))); // NOI18N
         jButton1.setText("Update");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -120,6 +123,8 @@ public class Infor extends javax.swing.JFrame {
 
         jtf_bd32.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
 
+        jButton2.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(0, 51, 51));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/exchange.png"))); // NOI18N
         jButton2.setText("Change Password");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -176,7 +181,7 @@ public class Infor extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(80, 80, 80)
                                 .addComponent(jLabel9)))))
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,7 +218,7 @@ public class Infor extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         pack();
@@ -249,7 +254,7 @@ public class Infor extends javax.swing.JFrame {
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         // TODO add your handling code here:
-        MENU s=new MENU(dataconstructor);
+        Menu s=new Menu(dataconstructor);
         s.setVisible(true);
         dispose();
     }//GEN-LAST:event_jLabel7MouseClicked

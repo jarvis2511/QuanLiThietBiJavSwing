@@ -195,7 +195,7 @@ public class ForgotPassword extends javax.swing.JFrame {
                 System.out.println("");
                 if (rs.next()) {
                     JOptionPane.showMessageDialog(this, "Một mã bảo mật đã được gửi về Email " + email32.getText());
-                    LOGIN lg = new LOGIN();
+                    Login lg = new Login();
                     lg.setVisible(true);
                     dispose();
                 } else {
@@ -216,7 +216,7 @@ public class ForgotPassword extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        LOGIN lg = new LOGIN();
+        Login lg = new Login();
         lg.setVisible(true);
         dispose();
     }//GEN-LAST:event_jLabel3MouseClicked

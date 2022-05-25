@@ -4,23 +4,33 @@
  */
 package GUI;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
+import java.util.Date;
+import javax.swing.Timer;
+
 /**
  *
  * @author QuanLDM
  */
-public class MENU extends javax.swing.JFrame {
+public class Menu extends javax.swing.JFrame {
 
     private static String dataConstructor = "";
     private static String dataConstructor2 = "";
+  
 
     /**
      * Creates new form LIBRARYALL
      */
-    public MENU(String dataConstructor) {
+    public Menu(String dataConstructor) {
         initComponents();
         setTitle("Quản lí thiết bị trường học");
         this.dataConstructor = dataConstructor;
-        Name32.setText("  Welcome " + dataConstructor);
+       infor_32.setText("WELCOME " +dataConstructor);
+    
     }
 
     /**
@@ -42,6 +52,7 @@ public class MENU extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel6 = new javax.swing.JLabel();
         History32 = new javax.swing.JLabel();
+        infor_32 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -103,6 +114,10 @@ public class MENU extends javax.swing.JFrame {
             }
         });
 
+        infor_32.setFont(new java.awt.Font("Times New Roman", 3, 16)); // NOI18N
+        infor_32.setForeground(new java.awt.Color(204, 0, 51));
+        infor_32.setText("jLabel4");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -110,9 +125,9 @@ public class MENU extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(Name32)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(35, 35, 35))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(infor_32)
+                .addGap(35, 665, Short.MAX_VALUE))
             .addComponent(jSeparator1)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,17 +152,27 @@ public class MENU extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(History32)
                         .addGap(59, 59, 59))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Name32)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator1)
-                .addGap(45, 45, 45)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(Name32))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(infor_32))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)))
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -170,27 +195,29 @@ public class MENU extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void List32MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_List32MouseClicked
-        QuanLi_Device s = new QuanLi_Device(dataConstructor);
+        List_Device s = new List_Device(dataConstructor);
         s.setVisible(true);
         dispose();
     }//GEN-LAST:event_List32MouseClicked
 
     private void ListMuon32MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListMuon32MouseClicked
-        Muon_Device s = new Muon_Device(dataConstructor);
+        BorrowList_Device s = new BorrowList_Device(dataConstructor);
         s.setVisible(true);
         dispose();
     }//GEN-LAST:event_ListMuon32MouseClicked
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:
-        LOGIN s = new LOGIN();
+        Login s = new Login();
         s.setVisible(true);
         dispose();
     }//GEN-LAST:event_jLabel1MouseClicked
@@ -206,7 +233,7 @@ public class MENU extends javax.swing.JFrame {
     }//GEN-LAST:event_Name32MouseClicked
 
     private void History32MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_History32MouseClicked
-        LichSu_Device s = new LichSu_Device(dataConstructor,dataConstructor2);
+        History_Device s = new History_Device(dataConstructor,dataConstructor2);
         s.setVisible(true);
         dispose();
     }//GEN-LAST:event_History32MouseClicked
@@ -228,21 +255,23 @@ public class MENU extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MENU.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MENU.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MENU.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MENU.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                MENU mnu = new MENU(dataConstructor);
+                Menu mnu = new Menu(dataConstructor);
                 mnu.setVisible(true);
             }
         });
@@ -253,6 +282,7 @@ public class MENU extends javax.swing.JFrame {
     private javax.swing.JLabel List32;
     private javax.swing.JLabel ListMuon32;
     private javax.swing.JLabel Name32;
+    private javax.swing.JLabel infor_32;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

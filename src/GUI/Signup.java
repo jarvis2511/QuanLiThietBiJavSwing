@@ -275,7 +275,7 @@ public class Signup extends javax.swing.JFrame {
                 pstmt.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Đăng ký thành công");
                 con.close();
-                LOGIN s = new LOGIN();
+                Login s = new Login();
                 s.setVisible(true);
                 dispose();
             } catch (Exception e) {
@@ -296,7 +296,7 @@ public class Signup extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        LOGIN s = new LOGIN();
+        Login s = new Login();
         s.setVisible(true);
         dispose();
     }//GEN-LAST:event_jLabel2MouseClicked

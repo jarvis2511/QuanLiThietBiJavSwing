@@ -49,7 +49,7 @@ public class Start extends javax.swing.JFrame {
                 }
                   if(i==100)
                   {
-                      LOGIN a =new LOGIN();
+                      Login a =new Login();
                       a.setVisible(true);
                       dispose();
                   }

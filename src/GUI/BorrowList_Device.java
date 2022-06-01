@@ -153,7 +153,7 @@ public class BorrowList_Device extends javax.swing.JFrame {
 
             },
             new String [] {
-                "MÃ MƯỢN", "MÃ SẢN PHẨM", "MÃ NGƯỜI MƯỢN", "TÊN NGƯỜI MƯỢN", "NGÀY MƯỢN"
+                "MÃ MƯỢN", "MÃ THIẾT BỊ", "MÃ NGƯỜI MƯỢN", "TÊN NGƯỜI MƯỢN", "NGÀY MƯỢN"
             }
         ) {
             boolean[] canEdit = new boolean [] {

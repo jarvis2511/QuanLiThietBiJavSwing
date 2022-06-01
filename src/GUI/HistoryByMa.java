@@ -135,7 +135,7 @@ public class HistoryByMa extends javax.swing.JFrame {
 
             },
             new String [] {
-                "MÃ MƯỢN", "MÃ SẢN PHẨM", "MÃ NGƯỜI MƯỢN", "TÊN NGƯỜI MƯỢN", "NGÀY MƯỢN", "NGÀY TRẢ"
+                "MÃ MƯỢN", "MÃ THIẾT BỊ", "MÃ NGƯỜI MƯỢN", "TÊN NGƯỜI MƯỢN", "NGÀY MƯỢN", "NGÀY TRẢ"
             }
         ) {
             boolean[] canEdit = new boolean [] {

@@ -50,6 +50,7 @@ public class ChangePassword extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         kGradientPanel1.setkEndColor(new java.awt.Color(204, 255, 255));
         kGradientPanel1.setkGradientFocus(400);
@@ -168,6 +169,7 @@ public class ChangePassword extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked

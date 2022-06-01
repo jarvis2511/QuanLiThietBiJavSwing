@@ -63,6 +63,7 @@ public class ForgotPassword extends javax.swing.JFrame {
         jLabel9.setText("Thông tin người dùng");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         kGradientPanel1.setkEndColor(new java.awt.Color(0, 204, 204));
         kGradientPanel1.setkGradientFocus(600);
@@ -232,6 +233,7 @@ public class ForgotPassword extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

@@ -58,6 +58,7 @@ public class Signup extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         kGradientPanel1.setkEndColor(new java.awt.Color(0, 204, 204));
         kGradientPanel1.setkGradientFocus(600);
@@ -277,6 +278,7 @@ public class Signup extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jtf_email32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_email32ActionPerformed

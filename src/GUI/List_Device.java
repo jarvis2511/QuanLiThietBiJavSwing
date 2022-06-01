@@ -49,6 +49,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import org.apache.poi.ss.usermodel.Cell;
@@ -66,6 +67,7 @@ public class List_Device extends javax.swing.JFrame {
     private String dataconstructor = "";
     private String dataconstructor1 = "";
     private String dataconstructor2 = "";
+   
 
     /**
      * Creates new form QuanLi_Device
@@ -95,7 +97,11 @@ public class List_Device extends javax.swing.JFrame {
             }
 //            obj[4] = dv.get(i).getTrangthai32();
             model.addRow(obj);
+            
         }
+       JTable jtb_ds = new JTable(model);
+        int rows = jtb_ds.getRowCount();
+        soluong_32.setText(" Total device: " +String.valueOf(rows)+" devices ");
     }
 
     public void openFile(String file) {
@@ -139,8 +145,10 @@ public class List_Device extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtb_ds = new javax.swing.JTable();
         jtf_search = new javax.swing.JTextField();
+        soluong_32 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         kGradientPanel1.setkEndColor(new java.awt.Color(0, 102, 102));
         kGradientPanel1.setkStartColor(new java.awt.Color(153, 153, 255));
@@ -361,7 +369,7 @@ public class List_Device extends javax.swing.JFrame {
         });
         jtb_ds.setGridColor(new java.awt.Color(0, 153, 0));
         jtb_ds.setRowHeight(30);
-        jtb_ds.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        jtb_ds.setSelectionBackground(new java.awt.Color(153, 153, 255));
         jtb_ds.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jtb_dsMouseClicked(evt);
@@ -380,16 +388,16 @@ public class List_Device extends javax.swing.JFrame {
                 jtf_searchMouseClicked(evt);
             }
         });
-        jtf_search.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtf_searchActionPerformed(evt);
-            }
-        });
         jtf_search.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jtf_searchKeyReleased(evt);
             }
         });
+
+        soluong_32.setFont(new java.awt.Font("Segoe UI", 3, 16)); // NOI18N
+        soluong_32.setForeground(new java.awt.Color(255, 255, 51));
+        soluong_32.setText("jLabel8");
+        soluong_32.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 51, 102), null, null));
 
         javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
         kGradientPanel1.setLayout(kGradientPanel1Layout);
@@ -397,8 +405,11 @@ public class List_Device extends javax.swing.JFrame {
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
                 .addContainerGap(70, Short.MAX_VALUE)
-                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jtf_search, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                        .addComponent(soluong_32, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jtf_search, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 999, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(83, 83, 83))
             .addGroup(kGradientPanel1Layout.createSequentialGroup()
@@ -422,7 +433,9 @@ public class List_Device extends javax.swing.JFrame {
                 .addGap(17, 17, 17)
                 .addComponent(jLabel2)
                 .addGap(28, 28, 28)
-                .addComponent(jtf_search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtf_search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(soluong_32))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
@@ -447,6 +460,7 @@ public class List_Device extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jtb_dsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtb_dsMouseClicked
@@ -568,20 +582,17 @@ public class List_Device extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_muon32ActionPerformed
 
     private void jtf_searchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_searchKeyReleased
-        // TODO add your handling code here:
+
         DefaultTableModel model = (DefaultTableModel) jtb_ds.getModel();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(model);
         jtb_ds.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(jtf_search.getText().trim()));
+    
     }//GEN-LAST:event_jtf_searchKeyReleased
 
     private void jtf_searchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtf_searchMouseClicked
         jtf_search.setText("");
     }//GEN-LAST:event_jtf_searchMouseClicked
-
-    private void jtf_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_searchActionPerformed
-
-    }//GEN-LAST:event_jtf_searchActionPerformed
 
     private void history_32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_history_32ActionPerformed
         HistoryByMa s = new HistoryByMa(dataconstructor, dataconstructor2);
@@ -658,8 +669,10 @@ public class List_Device extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                 
 
             }
         });
@@ -690,5 +703,6 @@ public class List_Device extends javax.swing.JFrame {
     private javax.swing.JTextField jtf_tinhtrang32;
     private javax.swing.JTextField jtf_trangthai32;
     private keeptoo.KGradientPanel kGradientPanel1;
+    private javax.swing.JLabel soluong_32;
     // End of variables declaration//GEN-END:variables
 }

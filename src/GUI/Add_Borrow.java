@@ -81,6 +81,7 @@ public class Add_Borrow extends javax.swing.JFrame {
         Reset_32 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         kGradientPanel1.setkEndColor(new java.awt.Color(0, 102, 102));
         kGradientPanel1.setkStartColor(new java.awt.Color(153, 153, 255));
@@ -241,6 +242,7 @@ public class Add_Borrow extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jtf_manguoi32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_manguoi32ActionPerformed

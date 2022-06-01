@@ -56,6 +56,8 @@ public class Menu extends javax.swing.JFrame {
         infor_32 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setFocusTraversalPolicyProvider(true);
+        setResizable(false);
 
         kGradientPanel1.setkEndColor(new java.awt.Color(0, 102, 102));
         kGradientPanel1.setkGradientFocus(700);
@@ -217,6 +219,7 @@ public class Menu extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void List32MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_List32MouseClicked

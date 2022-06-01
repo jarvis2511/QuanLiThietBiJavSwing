@@ -23,5 +23,6 @@ public class QL_THUVIEN1 {
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         Start a=new Start();
         a.setVisible(true);
+        
     }    
 }

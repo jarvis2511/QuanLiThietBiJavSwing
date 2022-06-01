@@ -77,6 +77,7 @@ public class Infor extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+        setResizable(false);
 
         kGradientPanel1.setkEndColor(new java.awt.Color(204, 255, 255));
         kGradientPanel1.setkStartColor(new java.awt.Color(255, 204, 204));
@@ -249,6 +250,7 @@ public class Infor extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jtf_gender32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_gender32ActionPerformed

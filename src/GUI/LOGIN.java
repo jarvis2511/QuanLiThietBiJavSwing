@@ -30,11 +30,13 @@ import javax.swing.Timer;
  */
 public class Login extends javax.swing.JFrame {
      Timer timer;
+     
 
     /**
      * Creates new form LOGIN
      */
     public Login() {
+       
         initComponents();
         setTitle("Quản lí thiết bị trường học");
         ActionListener actionListener = new ActionListener() {
@@ -44,28 +46,24 @@ public class Login extends javax.swing.JFrame {
                 DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
                 String time = timeFormat.format(date);
                 time32.setText(time);
-                
                 Date date2= new Date();
                 DateFormat timeFormat2 = new SimpleDateFormat("dd/MM/yyyy");
                 String time2 = timeFormat2.format(date2);
                 time32_1.setText(time2);
-                
             }
         };
         timer  = new Timer(1000 , actionListener);
         timer.setInitialDelay(0);
         timer.start();
-
     }
+    
     class JPanelGradient extends JPanel{
         protected void paintComponent(Graphics g){
             Graphics2D g2d= (Graphics2D) g;
             int width = getWidth();
-            int height = getHeight();
-            
+            int height = getHeight();            
             Color color1 = new Color(52,143,80);
-            Color color2 = new Color(86,180,211);
-            
+            Color color2 = new Color(86,180,211);           
             GradientPaint gp = new GradientPaint(0,0,color1, 180,height,color2);
             g2d.fillRect(0, 0, width, height);
         }
@@ -108,6 +106,7 @@ public class Login extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         kGradientPanel1.setkEndColor(new java.awt.Color(0, 204, 204));
         kGradientPanel1.setkGradientFocus(600);
@@ -390,6 +389,7 @@ public class Login extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLogin32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogin32ActionPerformed
@@ -480,41 +480,43 @@ public class Login extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+       
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Login().setVisible(true);
+               
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Fgpassword32;
-    private javax.swing.JButton btnLogin32;
-    private javax.swing.JLabel fb32;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JCheckBox jcb_miss32;
-    private javax.swing.JPasswordField jtf_password32;
-    private javax.swing.JTextField jtf_user32;
-    private keeptoo.KGradientPanel kGradientPanel1;
-    private javax.swing.JLabel time32;
-    private javax.swing.JLabel time32_1;
+    javax.swing.JLabel Fgpassword32;
+    javax.swing.JButton btnLogin32;
+    javax.swing.JLabel fb32;
+    javax.swing.JLabel jLabel1;
+    javax.swing.JLabel jLabel10;
+    javax.swing.JLabel jLabel11;
+    javax.swing.JLabel jLabel12;
+    javax.swing.JLabel jLabel13;
+    javax.swing.JLabel jLabel14;
+    javax.swing.JLabel jLabel15;
+    javax.swing.JLabel jLabel2;
+    javax.swing.JLabel jLabel3;
+    javax.swing.JLabel jLabel4;
+    javax.swing.JLabel jLabel5;
+    javax.swing.JLabel jLabel6;
+    javax.swing.JLabel jLabel7;
+    javax.swing.JLabel jLabel8;
+    javax.swing.JLabel jLabel9;
+    javax.swing.JPanel jPanel1;
+    javax.swing.JSeparator jSeparator1;
+    javax.swing.JCheckBox jcb_miss32;
+    javax.swing.JPasswordField jtf_password32;
+    javax.swing.JTextField jtf_user32;
+    keeptoo.KGradientPanel kGradientPanel1;
+    javax.swing.JLabel time32;
+    javax.swing.JLabel time32_1;
     // End of variables declaration//GEN-END:variables
 }
